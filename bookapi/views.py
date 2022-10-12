@@ -1,16 +1,18 @@
 from django.shortcuts import render
 
-from bookapi.models import Books,Reviews
+from bookapi.models import Books, Reviews
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from bookapi.serializer import BookSerializer,UserSeializer,ReviewSerializer
-from rest_framework import authentication,permissions
+from bookapi.serializer import BookSerializer, UserSeializer, ReviewSerializer
+from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 from rest_framework.decorators import action
 
+
 class UserModelView(ModelViewSet):
     serializer_class = UserSeializer
-    queryset =User.objects.all()
+    queryset = User.objects.all()
+
 
 class BookView(ModelViewSet):
     serializer_class = BookSerializer
@@ -18,10 +20,19 @@ class BookView(ModelViewSet):
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
-    def list(self,request,*args,**kwargs):
-        qs=Books.objects.filter(user=request.user)
-        serializers=BookSerializer(qs,many=True)
-        return Response(data=serializers.data)
+    def list(self, request, *args, **kwargs):
+
+        qs = Books.objects.all()
+
+        if "title" in request.query_params:
+            qs = qs.filter(title__contains=request.query_params.get("title"))
+            print(qs)
+        if "author" in request.query_params:
+            qs = qs.filter(author__contains=request.query_params.get("author"))
+        if "genre" in request.query_params:
+            qs = qs.filter(genre__contains=request.query_params.get("genre"))
+        serializer = BookSerializer(qs, many=True)
+        return Response(data=serializer.data)
 
 
     @action(methods=["post"], detail=True)
@@ -34,7 +45,8 @@ class BookView(ModelViewSet):
             serializer.save()
             return Response(data=serializer.data)
         else:
-            return Response(data=serializer.errors)
+             return Response(data=serializer.errors)
+
 
     @action(methods=["get"], detail=True)
     def get_review(self, request, *args, **kwargs):
@@ -43,7 +55,3 @@ class BookView(ModelViewSet):
         reviews = book.reviews_set.all()
         serializer = ReviewSerializer(reviews, many=True)
         return Response(data=serializer.data)
-
-
-
-
