@@ -1,7 +1,7 @@
 # Django-Ecommece-Bookstore
 <p>This is a RESTAPI should support CRUD operations on Ebook.API should also be able to return Ebook list that sorted and/or filtered ebooks by any of the fields.Uses token authentication to authenticate and to authorise the user.This RESTAPI supports multiple users.</p>
 
-##Requirements
+## Requirements
 Django 
 
 Pypi packages
@@ -9,15 +9,15 @@ Pypi packages
 Database:SQLite
  
 
-###API Actions:
+### API Actions:
 
-*Create the book with title,author,genre,review,favourite
+* Create the book with title,author,genre,review,favourite
 
-*Retrieve books details by the ID
+* Retrieve books details by the ID
 
-*Update books and their fields
+* Update books and their fields
 
-*Delete the added books
+* Delete the added books
 
 *retrieve a list of books associate with an author,genre,title
 
