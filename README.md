@@ -1,5 +1,11 @@
-# Django-Ecommece-Bookstore
+# Django-Ecommerce-Bookstore
 <p>This is a RESTAPI should support CRUD operations on Ebook.API should also be able to return Ebook list that sorted and/or filtered ebooks by any of the fields.Uses token authentication to authenticate and to authorise the user.This RESTAPI supports multiple users.</p>
+
+## Stack
+- Python
+-django
+-SQLite
+
 
 ## Requirements
 Django 
@@ -22,7 +28,7 @@ Database:SQLite
 *retrieve a list of books associate with an author,genre,title
 
 
-## EBooks_App
+## EBook_App
 
 Lets begin our project by starting our project and installing a books app, type below commands in terminal.
 
