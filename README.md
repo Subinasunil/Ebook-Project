@@ -3,16 +3,15 @@
 
 ## Stack
 - Python
--django
--SQLite
+- django
+- SQLite
+- vsc code
 
 
 ## Requirements
-Django 
-
-Pypi packages
-
-Database:SQLite
+- Django 
+- Pypi packages
+- Database:SQLite
  
 
 ### API Actions:
